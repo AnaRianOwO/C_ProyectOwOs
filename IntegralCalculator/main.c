@@ -1,35 +1,26 @@
 #include <stdio.h>
 
-int suma(int a, int b){
-  return a+b;
-}
-
-int resta(int a, int b){
-  return a-b;
-}
-
-float division(float a, float b){
-  return a/b;
-}
-
-int multiplicacion(int a, int b){
-  return a*b;
-}
-
 int main() {
-  printf("¡Hola, bestie! Esta calculadora será épica uwu\n");
-  int x, y;
-  scanf("%d\n", &x);
-  scanf("%d", &y);
+  struct Termino {
+    float coeficiente;
+    int exponente;
+  };
 
-  int resultado = suma(x, y);
-  printf("La suma es:%d\n", resultado);
-  resultado = resta(x,y);
-  printf("La resta es:%d\n", resultado);
-  float resul = division(x,y);
-  printf("La división es:%f\n", resul);
-  resultado = multiplicacion(x,y);
-  printf("La multiplicación es:%d\n", resultado);
+  struct Polinomio {
+    char variable;
+    struct Termino terminos[20];
+    int num_terminos;
+  };
+
+  struct Termino crear_termino(float coef, int exp) {
+    struct Termino t;
+    t.coeficiente = coef;
+    t.exponente = exp;
+    return t;
+  };
+
+  struct Termino t = crear_termino(9, 2);
+  printf("%f x^%d", t.coeficiente, t.exponente);
 
   return 0;
 }
