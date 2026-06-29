@@ -140,8 +140,44 @@ struct Polinomio integrar_polinomio(struct Polinomio p){
   return integral;
 }
 
+float evaluar_punto(struct Polinomio p, float x){
+  float valor = 0;
+  for (int i=0; i<p.num_terminos; i++){
+    float potencia = 1;
+    for (int j=0; j<p.terminos[i].exponente;j++){
+      potencia*=x;
+    }
+    valor+= p.terminos[i].coeficiente*(potencia);
+  }
+  return valor;
+}
+
+float derivar_en_punto(struct Polinomio p, float x){
+  struct Polinomio derivada = derivar_polinomio(p);
+  return evaluar_punto(derivada, x);
+}
+
+struct Polinomio derivar_orden(struct Polinomio p, int n){
+  struct Polinomio resultado = p;
+
+  if (n==0){
+    return p;
+  }
+
+  for(int i=0; i<n; i++){
+    resultado = derivar_polinomio(resultado);
+  }
+  return resultado;
+}
+
+float integral_definida(struct Polinomio p, float a, float b){
+  struct Polinomio integral = integrar_polinomio(p);
+  return evaluar_punto(integral, b) - evaluar_punto(integral, a);
+}
+
 int main() {
   struct Polinomio p = crear_polinomio('x', 0);
+  // Para no confundirme después, cada agregar término va: puntero a polinomio, coeficiente, exponente
   agregar_termino(&p, 8, 1);
   agregar_termino(&p, -4, 3);
   agregar_termino(&p, 10, 2);
@@ -149,8 +185,22 @@ int main() {
   agregar_termino(&p, 1, 6);
   agregar_termino(&p, -1, 0);
   agregar_termino(&p, 0, 2);
+  
   organizar_polinomio(&p);
   imprimir_polinomio(p);
+
+  /*
+  float valor = integral_definida(p, 4, 5);
+  printf("El valor de la integral en medio de los dos puntos es: %g\n", valor);
+  
+
+  struct Polinomio o = derivar_orden(p, 2);
+  printf("El polinomio a dicho orden es:");
+  imprimir_polinomio(o);
+
+  float valor = derivar_en_punto(p,2);
+  printf("El valor de la derivada en el punto es de %g", valor);
+  
   struct Polinomio d = derivar_polinomio(p);
   organizar_polinomio(&d);
   printf("Derivada:\n");
@@ -159,6 +209,7 @@ int main() {
   organizar_polinomio(&i);
   printf("Integral:\n");
   imprimir_polinomio(i);
-
+  */
+  
   return 0;
 }
