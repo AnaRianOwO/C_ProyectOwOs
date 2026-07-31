@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -lm
 
 TARGET = calculadora
 
-SOURCES = main.c polinomio.c
+SOURCES = main.c polinomio.c parser.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

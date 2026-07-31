@@ -5,12 +5,21 @@
 #include "parser.h"
 #include "polinomio.h"
 
-struct Polinomio parsear_polinomio(const char *entrada) {
-    char* string = "x^6 -2x^4 -4x^3 +10x^2 +8x -1";
-    printf("%s", string);
-    printf("%s", entrada);
-    return crear_polinomio('x', 0);
+void limpiar_espacios(char *str) {
+    int j = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!isspace(str[i])) {
+            str[j] = str[i];
+            j++;
+        }
+    }
+    str[j] = '\0';
+    printf("%s", str);
 }
 
-char* entrada = "hola";
-parsear_polinomio(const entrada);
+struct Polinomio parsear_polinomio(char *entrada) {
+  limpiar_espacios(entrada);
+  return crear_polinomio('x', 0);
+}
+
+

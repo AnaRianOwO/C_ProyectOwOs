@@ -3,6 +3,6 @@
 
 #include "polinomio.h"
 
-struct Polinomio parsear_polinomio(const char *entrada); 
+struct Polinomio parsear_polinomio(char *entrada);
 
 #endif

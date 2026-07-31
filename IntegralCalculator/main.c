@@ -6,12 +6,12 @@ int tiene_constante = 0;
 
 int main() {
   
-  /*char string[99] = "x^6 -2x^4 -4x^3 +10x^2 +8x -1";
+  char* string = "x^6 -2x^4 -4x^3 +10x^2 +8x -1";
   struct Polinomio p = parsear_polinomio(string);
   imprimir_polinomio(p);
-  */
+  
   // Para no confundirme después, cada agregar término va: puntero a polinomio, coeficiente, exponente
-
+  /*
   
   struct Polinomio p = crear_polinomio('x', 0);
 
@@ -25,7 +25,7 @@ int main() {
   
   organizar_polinomio(&p);
   imprimir_polinomio(p);
-  /*
+  
   float valor_ = integral_definida(p, 4, 5);
   printf("El valor de la integral en medio de los dos puntos es: %g\n", valor_);
   
